@@ -1,0 +1,12 @@
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\bin\Debug\netcoreapp3.1\authDal.deps.json
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\bin\Debug\netcoreapp3.1\authDal.runtimeconfig.json
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\bin\Debug\netcoreapp3.1\authDal.runtimeconfig.dev.json
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\bin\Debug\netcoreapp3.1\authDal.dll
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\bin\Debug\netcoreapp3.1\authDal.pdb
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\obj\Debug\netcoreapp3.1\authDal.csprojAssemblyReference.cache
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\obj\Debug\netcoreapp3.1\authDal.AssemblyInfoInputs.cache
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\obj\Debug\netcoreapp3.1\authDal.AssemblyInfo.cs
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\obj\Debug\netcoreapp3.1\authDal.csproj.CoreCompileInputs.cache
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\obj\Debug\netcoreapp3.1\authDal.dll
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\obj\Debug\netcoreapp3.1\authDal.pdb
+F:\GitHub\JWT_Authentication-React-.NET\server\authDal\obj\Debug\netcoreapp3.1\authDal.genruntimeconfig.cache
