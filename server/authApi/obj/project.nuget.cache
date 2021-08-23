@@ -1,14 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "B1J/xpI6ZefIb/+jKajTZ3dp58WNvQZ00doUaKlb87LAReM2zx3oOt+nuK5Lfabpty4vTihjJ3iOmd8k0G5/ug==",
+  "dgSpecHash": "FAt0nKVWWLs0rre+r3aozckwO9F2pByFSrSsvbbF338bq6MBmMAhNBe0Afths5V2FAB7xZESSDPsOnfpiHJZaA==",
   "success": true,
   "projectFilePath": "F:\\GitHub\\JWT_Authentication-React-.NET\\server\\authapi\\authApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\fabio\\.nuget\\packages\\bcrypt.net-next\\4.0.2\\bcrypt.net-next.4.0.2.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.18\\microsoft.aspnetcore.authentication.jwtbearer.3.1.18.nupkg.sha512",
+    "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\2.2.0\\microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\microsoft.aspnetcore.dataprotection.abstractions\\2.2.0\\microsoft.aspnetcore.dataprotection.abstractions.2.2.0.nupkg.sha512",

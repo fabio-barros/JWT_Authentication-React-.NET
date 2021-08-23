@@ -58,3 +58,4 @@ F:\GitHub\JWT_Authentication-React-.NET\server\authapi\obj\Debug\netcoreapp3.1\s
 F:\GitHub\JWT_Authentication-React-.NET\server\authapi\obj\Debug\netcoreapp3.1\authApi.dll
 F:\GitHub\JWT_Authentication-React-.NET\server\authapi\obj\Debug\netcoreapp3.1\authApi.pdb
 F:\GitHub\JWT_Authentication-React-.NET\server\authapi\obj\Debug\netcoreapp3.1\authApi.genruntimeconfig.cache
+F:\GitHub\JWT_Authentication-React-.NET\server\authapi\bin\Debug\netcoreapp3.1\BCrypt.Net-Next.dll

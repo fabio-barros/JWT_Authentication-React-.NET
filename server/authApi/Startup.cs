@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using authDal.DB;
+
+using authDal.Services.UserServices;
+using GameCatalogApi.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +17,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OpenApi.Models;
 
@@ -34,8 +40,8 @@ namespace authApi
 
             services.AddCors(options =>
             {
-                options.AddPolicy("corsPolicy", options => options.AllowAnyOrigin()
-                    .AllowAnyMethod().AllowAnyHeader().WithExposedHeaders(HeaderNames.ContentRange));
+                options.AddPolicy("corsPolicy", options => options.WithOrigins(new[] { "https://localhost:3000", "https://localhost:4200" })
+                    .AllowAnyMethod().AllowAnyHeader().AllowCredentials();
             });
 
             services.AddSwaggerGen(c =>
@@ -44,6 +50,30 @@ namespace authApi
             });
 
             services.AddDbContext<AuthDalContext>(options => options.UseNpgsql(Configuration.GetConnectionString("NpgConnectionString")));
+            services.AddScoped<IUserService, UserService>();
+
+            var secret =
+               Encoding.ASCII.GetBytes(Configuration.GetSection("JwtConfig:Secret").Value);
+
+            services.AddAuthentication(options =>
+               {
+                   options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                   options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+               })
+               .AddJwtBearer(bearer =>
+               {
+                   bearer.RequireHttpsMetadata = false;
+                   bearer.SaveToken = true;
+                   bearer.TokenValidationParameters = new TokenValidationParameters
+                   {
+                       ValidateIssuerSigningKey = true,
+                       IssuerSigningKey = new SymmetricSecurityKey(secret),
+                       ValidateIssuer = false,
+                       ValidateAudience = false
+                   };
+               });
+            services.AddSingleton<ITokenService, TokenService>();
+
 
 
 
@@ -62,6 +92,8 @@ namespace authApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("corsPolicy");
 
             app.UseAuthentication();
 

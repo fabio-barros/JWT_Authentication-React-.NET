@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using authDal.DB;
@@ -9,9 +10,10 @@ using authDal.DB;
 namespace authDal.Migrations
 {
     [DbContext(typeof(AuthDalContext))]
-    partial class AuthDalContextModelSnapshot : ModelSnapshot
+    [Migration("20210823011828_ChangePasswordLength")]
+    partial class ChangePasswordLength
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

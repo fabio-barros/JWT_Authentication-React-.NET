@@ -5340,11 +5340,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\GitHub\\JWT_Authentication-React-.NET\\server\\authDal\\authDal.csproj",
+      "projectUniqueName": "F:\\GitHub\\JWT_Authentication-React-.NET\\server\\authdal\\authDal.csproj",
       "projectName": "authDal",
-      "projectPath": "F:\\GitHub\\JWT_Authentication-React-.NET\\server\\authDal\\authDal.csproj",
+      "projectPath": "F:\\GitHub\\JWT_Authentication-React-.NET\\server\\authdal\\authDal.csproj",
       "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
-      "outputPath": "F:\\GitHub\\JWT_Authentication-React-.NET\\server\\authDal\\obj\\",
+      "outputPath": "F:\\GitHub\\JWT_Authentication-React-.NET\\server\\authdal\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config"

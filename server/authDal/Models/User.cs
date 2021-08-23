@@ -12,7 +12,7 @@ namespace authDal.Models
 
         [Required]
         [StringLength(20)]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
         [Required]
         [StringLength(20)]
@@ -23,7 +23,7 @@ namespace authDal.Models
         public string Email { get; set; }
 
         [Required]
-        [StringLength(50)]
+        [StringLength(70)]
         public string Password { get; set; }
     }
 }
