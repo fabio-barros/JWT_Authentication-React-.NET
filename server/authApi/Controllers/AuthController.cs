@@ -9,6 +9,7 @@ using authDal.Services.UserServices;
 using GameCatalogApi.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace authApi.Controllers
@@ -16,7 +17,7 @@ namespace authApi.Controllers
     [ApiController]
     [Route("api/v1/[controller]")]
     // [Authorize]
-    public class AuthController : Controller
+    public class AuthController : ControllerBase
     {
         private readonly IUserService _services;
         private readonly ITokenService _tokenService;
@@ -27,12 +28,6 @@ namespace authApi.Controllers
             _tokenService = tokenService;
 
 
-        }
-
-        [HttpGet]
-        public IActionResult Hello()
-        {
-            return Ok("Success");
         }
 
         [HttpPost("register")]
@@ -88,6 +83,57 @@ namespace authApi.Controllers
                 return UnprocessableEntity(e.Message);
             }
         }
+
+        [HttpGet]
+        public async Task<ActionResult<dynamic>> Authenticate()
+        {
+
+            var jwt = Request.Cookies["jwt"];
+
+            if (jwt == null)
+            {
+                return Unauthorized();
+            }
+
+            var token = _tokenService.Verify(jwt);
+
+            Guid userId = Guid.Parse(token.Issuer);
+
+            try
+            {
+                var user = await _services.Get(userId);
+
+                return user;
+            }
+            catch (Exception e)
+            {
+                return UnprocessableEntity(e.Message);
+            }
+
+
+        }
+
+        [HttpPost("logout")]
+        public ActionResult Logout()
+        {
+
+            Response.Cookies.Delete("jwt");
+
+            return Ok(new { message = "Logout Success!" });
+
+
+        }
+
+        [HttpGet]
+        [Route("user")]
+        [Authorize(Roles = "nashville@email.com")]
+        public string Userr() => "User";
+
+        [HttpGet]
+        [Route("admin")]
+        [Authorize(Roles = "admin")]
+        public string Admin() => "Admin";
+
 
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using authDal.DB;
 using authDal.Exceptions;
@@ -36,11 +37,11 @@ namespace authDal.Services.UserServices
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 Email = user.Email,
-                Password = user.Password,
+                // Password = user.Password
             };
         }
 
-        public async Task<UserViewModel> Login(LoginInputModel loginInput)
+        public async Task<User> Login(LoginInputModel loginInput)
         {
             var userEntityFromDb = await _context.Users.FirstOrDefaultAsync(person => person.Email.Equals(loginInput.Email));
 
@@ -49,11 +50,22 @@ namespace authDal.Services.UserServices
                 return null;
             }
 
-            return newUserViewModel(userEntityFromDb);
+            return userEntityFromDb;
 
         }
 
+        public async Task<UserViewModel> Get(Guid Id)
+        {
+            var userEntityFromDb = await _context.Users.FirstOrDefaultAsync(u => u.Id.Equals(Id));
 
+            if (userEntityFromDb == null)
+            {
+                throw new UserDoesNotExistException();
+            }
+
+            return newUserViewModel(userEntityFromDb);
+
+        }
 
         public async Task<UserViewModel> Add(UserInputModel userInput)
         {

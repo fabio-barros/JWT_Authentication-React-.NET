@@ -40,8 +40,8 @@ namespace authApi
 
             services.AddCors(options =>
             {
-                options.AddPolicy("corsPolicy", options => options.WithOrigins(new[] { "https://localhost:3000", "https://localhost:4200" })
-                    .AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+                options.AddPolicy("corsPolicy", options => options.WithOrigins(new[] { "http://localhost:3000", "http://localhost:4200" })
+                    .AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             });
 
             services.AddSwaggerGen(c =>

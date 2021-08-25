@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using authDal.Models;
 using authDal.Models.InputModels;
 using authDal.Models.ViewModels;
 
@@ -9,7 +10,8 @@ namespace authDal.Services.UserServices
     {
         Task<UserViewModel> Add(UserInputModel user);
         // Task<UserViewModel> Get(Guid id);
-        Task<UserViewModel> Login(LoginInputModel loginInput);
+        Task<User> Login(LoginInputModel loginInput);
+        Task<UserViewModel> Get(Guid Id);
 
     }
 }
