@@ -73,7 +73,7 @@ namespace authApi.Controllers
                     return BadRequest("Invalid Credentials.");
                 }
                 var token = _tokenService.Generatetoken(userFromDb);
-                Response.Cookies.Append("jwt", token, new CookieOptions { Expires = DateTime.Now.AddMinutes(15), HttpOnly = true });
+                Response.Cookies.Append("jwt", token, new CookieOptions { Expires = DateTime.Now.AddMinutes(15), HttpOnly = true, Secure = true });
 
                 return Ok(new { message = "Success" });
 
@@ -115,11 +115,8 @@ namespace authApi.Controllers
         [HttpPost("logout")]
         public ActionResult Logout()
         {
-
             Response.Cookies.Delete("jwt");
-
             return Ok(new { message = "Logout Success!" });
-
 
         }
 

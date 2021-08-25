@@ -12,7 +12,9 @@ export enum ActionTypes {
     SIGN_IN_SUCCESS = "SIGN_IN_SUCCESS",
     SIGN_IN_FAIL = "SIGN_IN_FAIL",
 
-    SIGN_OUT = "SIGN_OUT",
+    SIGN_OUT_REQUEST = "SIGN_OUT_REQUEST",
+    SIGN_OUT_SUCCESS = "SIGN_OUT_SUCCESS",
+    SIGN_OUT_FAIL = "SIGN_OUT_FAIL",
 
     AUTHENTICATE_REQUEST = "AUTHENTICATE_REQUEST",
     AUTHENTICATE_SUCCESS = "AUTHENTICATE_SUCCESS",
@@ -66,9 +68,21 @@ export type SignInActionTypes =
 /**
  * *LOGOUT
  */
-export type signOutActionTypes = {
-    type: ActionTypes.SIGN_OUT;
-};
+interface SignOutRequestAction {
+    type: ActionTypes.SIGN_OUT_REQUEST;
+}
+interface SignOutSuccessAction {
+    type: ActionTypes.SIGN_OUT_SUCCESS;
+    payload: SignOutResponse;
+}
+interface SignOutFailAction {
+    type: ActionTypes.SIGN_OUT_FAIL;
+    payload: errorFormat;
+}
+export type signOutActionTypes =
+    | SignOutRequestAction
+    | SignOutSuccessAction
+    | SignOutFailAction;
 
 /**
  * * AUTHENTICATE
@@ -106,27 +120,35 @@ export interface SignInResponse {
     message: string;
 }
 
-export interface SignUpState {
-    readonly data?: SignUpResponse;
+export interface SignOutResponse {
+    message: string;
+}
+
+interface BasicState {
     readonly loading?: boolean;
     readonly error?: errorFormat;
 }
 
-export interface SignInState {
+export interface SignUpState extends BasicState {
+    readonly data?: SignUpResponse;
+}
+
+export interface SignInState extends BasicState {
     readonly data?: SignInResponse;
-    readonly loading?: boolean;
-    readonly error?: errorFormat;
 }
 
-export interface isAuthenticatedState {
+export interface SignOutState extends BasicState {
+    readonly data?: SignOutResponse;
+}
+
+export interface isAuthenticatedState extends BasicState {
     readonly data?: SignUpResponse;
-    readonly loading?: boolean;
-    readonly error?: errorFormat;
 }
 
 const SIGN_UP_INITIAL_STATE: SignUpState = {};
 const SIGN_IN_INITIAL_STATE: SignInState = {};
 const IS_AUTHENTICATED_INITIAL_STATE: isAuthenticatedState = {};
+const SIGN_OUT_INITIAL_STATE: SignOutState = {};
 
 //**ACTION CREATORS
 export const signUpAction =
@@ -220,8 +242,29 @@ export const authenticateAction =
 
 export const signOutAction =
     () => async (dispatch: Dispatch<signOutActionTypes>) => {
-        dispatch({ type: ActionTypes.SIGN_OUT });
-        localStorage.removeItem("token");
+        try {
+            dispatch({ type: ActionTypes.SIGN_OUT_REQUEST });
+            const { data } = await axios.post(
+                `${process.env.REACT_APP_API_AUTH}/logout`,
+                null,
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            dispatch({
+                type: ActionTypes.SIGN_OUT_SUCCESS,
+                payload: data,
+            });
+        } catch (error) {
+            dispatch({
+                type: ActionTypes.SIGN_OUT_FAIL,
+                payload: errorTreatment(error),
+            });
+        }
     };
 
 ///REDUCERS
@@ -278,20 +321,31 @@ export const signInReducer: Reducer<SignInState, SignInActionTypes> = (
     }
 };
 
-export const signOutReducer: Reducer<isAuthenticatedState, signOutActionTypes> =
-    (state = IS_AUTHENTICATED_INITIAL_STATE, action: signOutActionTypes) => {
-        switch (action.type) {
-            case ActionTypes.SIGN_OUT:
-                return {
-                    ...state,
-                    loading: false,
-                    error: { message: "", data: "" },
-                    isAuthenticated: false,
-                };
-            default:
-                return state;
-        }
-    };
+export const signOutReducer: Reducer<SignOutState, signOutActionTypes> = (
+    state = SIGN_OUT_INITIAL_STATE,
+    action: signOutActionTypes
+) => {
+    switch (action.type) {
+        case ActionTypes.SIGN_OUT_REQUEST:
+            return { ...state, loading: true };
+        case ActionTypes.SIGN_OUT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: { message: "", data: "", noReponse: "" },
+                data: { ...action.payload },
+            };
+        case ActionTypes.SIGN_OUT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: { ...action.payload },
+                data: SIGN_OUT_INITIAL_STATE.data,
+            };
+        default:
+            return state;
+    }
+};
 
 export const isAuthenticatedReducer: Reducer<
     isAuthenticatedState,

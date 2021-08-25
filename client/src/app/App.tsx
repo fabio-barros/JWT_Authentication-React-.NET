@@ -11,34 +11,13 @@ import store, { ApplicationState } from "../redux/store";
 import { authenticateAction, isAuthenticatedState } from "../redux/ducks/auth";
 
 function App() {
-    const dispatch: Dispatch<any> = useDispatch();
-
-    const isAuthenticatedResponse: isAuthenticatedState = useSelector(
-        (state: ApplicationState) => {
-            return state.isAuthenticated;
-        }
-    );
-    const { loading, error, data } = isAuthenticatedResponse;
-
-    // useEffect(() => {
-    //     (async () => {
-    //         dispatch(authenticateAction());
-    //     })();
-    // }, [dispatch]);
-
     return (
         <div className="App">
             <BrowserRouter>
                 <Header />
                 <Container className="main-wrapper">
                     <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            component={() => (
-                                <Home userData={isAuthenticatedResponse} />
-                            )}
-                        />
+                        <Route exact path="/" component={() => <Home />} />
                         <Route exact path="/auth/login" component={Login} />
                         <Route
                             exact

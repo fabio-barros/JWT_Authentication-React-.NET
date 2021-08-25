@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Dispatch, FC, FormEvent, useState } from "react";
+import { Dispatch, FC, FormEvent, useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -40,9 +40,9 @@ const Login: FC<LoginProps> = () => {
         );
     };
 
-    if (userLoginResponse.data) {
-        return <Redirect to="/" />;
-    }
+    // if (data) {
+    //     return <Redirect to="/" />;
+    // }
 
     return (
         <>
