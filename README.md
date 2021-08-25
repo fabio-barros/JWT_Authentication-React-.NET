@@ -3,8 +3,8 @@
 
 ### ⚙️  Structure
 
--   Client w/ TypeScript, React, Redux, React-Bootstrap 🔧👷
--  	Server w/ .NET Core, Postgres, JWT Authentication  🔧👷
+-   Client w/ TypeScript, Next.js, Redux, React-Bootstrap  ✔️
+-   Server w/ .NET Core, Heroku Postgres, JWT Authentication   ✔️
 
 ### 🛠  Technologies
 
