@@ -5,45 +5,48 @@ import Register from "../components/pages/Register";
 import Login from "../components/pages/Login";
 import Header from "../components/Header";
 import Home from "../components/pages/Home";
-import { useEffect } from "react";
+import { Dispatch, useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import store from "../redux/store";
+import store, { ApplicationState } from "../redux/store";
+import { authenticateAction, isAuthenticatedState } from "../redux/ducks/auth";
 
 function App() {
-    // const isAuthenticatedResponse: isAuthenticatedState = useSelector(
-    //     (state: ApplicationState) => state.isAuthenticated
-    // );
+    const dispatch: Dispatch<any> = useDispatch();
 
-    // const dispatch = useDispatch<any>();
-    // console.log(isAuthenticatedError?.message);
+    const isAuthenticatedResponse: isAuthenticatedState = useSelector(
+        (state: ApplicationState) => {
+            return state.isAuthenticated;
+        }
+    );
+    const { loading, error, data } = isAuthenticatedResponse;
+
     // useEffect(() => {
-    //     dispatch(authenticateAction());
+    //     (async () => {
+    //         dispatch(authenticateAction());
+    //     })();
     // }, [dispatch]);
+
     return (
         <div className="App">
             <BrowserRouter>
-                <Provider store={store}>
-                    <Header />
-                    <Container className="main-wrapper">
-                        <Switch>
-                            <Route
-                                exact
-                                path="/"
-                                component={() => (
-                                    <Home
-                                    // userResponseData={isAuthenticatedResponse}
-                                    />
-                                )}
-                            />
-                            <Route exact path="/auth/login" component={Login} />
-                            <Route
-                                exact
-                                path="/auth/register"
-                                component={Register}
-                            />
-                        </Switch>
-                    </Container>
-                </Provider>
+                <Header />
+                <Container className="main-wrapper">
+                    <Switch>
+                        <Route
+                            exact
+                            path="/"
+                            component={() => (
+                                <Home userData={isAuthenticatedResponse} />
+                            )}
+                        />
+                        <Route exact path="/auth/login" component={Login} />
+                        <Route
+                            exact
+                            path="/auth/register"
+                            component={Register}
+                        />
+                    </Switch>
+                </Container>
             </BrowserRouter>
         </div>
     );

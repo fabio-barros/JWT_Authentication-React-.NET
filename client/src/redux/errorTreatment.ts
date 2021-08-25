@@ -5,6 +5,7 @@ export interface errorFormat {
 }
 
 export const errorTreatment = (error) => {
+    console.log(error.data);
     if (!error.response) {
         return { noReponse: error.message };
     }

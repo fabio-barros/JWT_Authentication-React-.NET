@@ -166,6 +166,13 @@ export const signInAction =
                 {
                     email: email,
                     password: password,
+                },
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Content-Type": "application/json",
+                    },
                 }
             );
 
@@ -189,7 +196,14 @@ export const authenticateAction =
             dispatch({ type: ActionTypes.AUTHENTICATE_REQUEST });
 
             const { data } = await axios.get(
-                `${process.env.REACT_APP_API_AUTH}`
+                `${process.env.REACT_APP_API_AUTH}/authenticate`,
+                {
+                    withCredentials: true,
+                    headers: {
+                        "Access-Control-Allow-Origin": "*",
+                        "Content-Type": "application/json",
+                    },
+                }
             );
 
             dispatch({

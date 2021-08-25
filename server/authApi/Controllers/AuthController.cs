@@ -84,10 +84,9 @@ namespace authApi.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet("authenticate")]
         public async Task<ActionResult<dynamic>> Authenticate()
         {
-
             var jwt = Request.Cookies["jwt"];
 
             if (jwt == null)

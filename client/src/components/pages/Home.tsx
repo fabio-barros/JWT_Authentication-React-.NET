@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Dispatch, FC, Fragment, useEffect, useState } from "react";
+import { Alert } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { UserInfo } from "../../interfaces/IUser";
 import {
@@ -10,39 +11,27 @@ import { ApplicationState } from "../../redux/store";
 import { Loader } from "../Loader";
 import Message from "../Message";
 
-interface HomeProps {}
+interface HomeProps {
+    userData: isAuthenticatedState;
+}
 
-const Home: FC<HomeProps> = ({}) => {
+const Home: FC<HomeProps> = ({ userData }) => {
     const [user, setUser] = useState<UserInfo>();
 
     const dispatch: Dispatch<any> = useDispatch();
 
-    const isAuthenticatedResponse: isAuthenticatedState = useSelector(
-        (state: ApplicationState) => {
-            return state.isAuthenticated;
-        }
-    );
-    const { loading, error, data } = isAuthenticatedResponse;
-
-    useEffect(() => {
-        const isAuthenticated = async () => {
-            dispatch(authenticateAction());
-        };
-        isAuthenticated();
-    }, [dispatch]);
-
     return (
         <>
-            {loading ? (
+            {userData.loading ? (
                 <Loader />
-            ) : error?.noReponse ? (
-                <Message variant="danger">{error?.noReponse}</Message>
-            ) : (
-                <Message variant={data ? "success" : "warning"}>
-                    {data
-                        ? `Hi, ${data?.firstName}`
+            ) : !userData.error?.noReponse ? (
+                <Message variant={userData.data ? "success" : "info"}>
+                    {userData.data
+                        ? `Hi, ${userData.data?.firstName}`
                         : "Please Login or Register."}
                 </Message>
+            ) : (
+                <Message variant="danger">{userData.error?.noReponse}</Message>
             )}
         </>
     );

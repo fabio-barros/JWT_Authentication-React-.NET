@@ -89,11 +89,12 @@ namespace authApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AuthApi v1"));
             }
 
+            app.UseCors("corsPolicy");
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseCors("corsPolicy");
 
             app.UseAuthentication();
 
