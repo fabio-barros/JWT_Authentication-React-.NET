@@ -17,6 +17,7 @@
 #### ⚛️ Frontend
 -   [Next.js](https://nextjs.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
+-   [Redux](https://redux.js.org/)
 -   [React Bootstrap](https://react-bootstrap.github.io/)
 -   [Axios](https://axios-http.com/)
 
