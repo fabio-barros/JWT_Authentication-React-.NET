@@ -1,10 +1,10 @@
 
-🖥  JWT Authentication with .NET and React
+🖥  JWT Authentication using HttpOnly Cookies with .NET and React
 
 ### ⚙️  Structure
 
 -   Client w/ TypeScript, Next.js, Redux, React-Bootstrap  ✔️
--   Server w/ .NET Core, Heroku Postgres, JWT Authentication   ✔️
+-   Server w/ .NET Core, Heroku Postgres, HttpOnly JWT Authentication   ✔️
 
 ### 🛠  Technologies
 
