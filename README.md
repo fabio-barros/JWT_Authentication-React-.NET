@@ -12,7 +12,7 @@
 -  	[.NET Core 3.1](https://dotnet.microsoft.com/download)
  - [Entity Framework Core](https://docs.microsoft.com/pt-br/ef/core/)
  - [JWT](https://jwt.io/)
--  [Heroku PostGres](https://www.heroku.com/postgres)
+-  [Heroku Postgres](https://www.heroku.com/postgres)
 -  [Npgsql](https://www.npgsql.org/)
 #### ⚛️ Frontend
 -   [React](https://reactjs.org/)
