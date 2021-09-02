@@ -15,7 +15,7 @@
 -  [Heroku PostGres](https://www.heroku.com/postgres)
 -  [Npgsql](https://www.npgsql.org/)
 #### ⚛️ Frontend
--   [Next.js](https://nextjs.org/)
+-   [React](https://reactjs.org/)
 -   [TypeScript](https://www.typescriptlang.org/)
 -   [Redux](https://redux.js.org/)
 -   [React Bootstrap](https://react-bootstrap.github.io/)
